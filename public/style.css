@@ -1,0 +1,177 @@
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f6f7ff;
+}
+:root {
+    --bcg-primary: #5378fa;
+}
+.container-fluid {
+    height: 100vh;
+}
+
+/* side-nav */
+.show#sidebar-nav {
+    background-color: var(--bcg-primary);
+    transition: 0.5s;
+}
+.hidden#sidebar-nav {
+    background-color: var(--bcg-primary);
+    width: 75px;
+    transition: 0.5s;
+}
+@media (max-width: 575.98px) {
+    #sidebar-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        transition: 0.5s;
+        overflow-y: hidden;
+        border-radius: 10px 10px 0 0;
+        z-index: 1;
+    }
+    .hidden#sidebar-nav {
+        width: 100%;
+    }
+    .hidden-sm {
+        height: 0;
+        transition: 0.5s;
+    }
+    .show-sm {
+        height: 450px;
+        transition: 0.5s;
+    }
+    #collapse-area {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        cursor: pointer;
+    }
+    .hidden-area-collapse {
+        display: none;
+    }
+    .show-area-collapse {
+        display: inline-block;
+    }
+    .my-nav-link span {
+        display: block !important;
+    }
+}
+#my-btn-collaps {
+    display: inline-block;
+    background: #7896ff;
+    border-radius: 11px;
+    cursor: pointer;
+}
+.line {
+    width: 100%;
+    border: 1px solid #93a9fa;
+}
+h1.title-nav {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    color: #ffffff;
+}
+.my-nav-link {
+    color: white !important;
+    overflow-x: hidden;
+    height: 40px;
+    overflow-y: hidden;
+}
+.hidden .my-nav-link span {
+    display: none;
+    transition: 0.2s;
+}
+.show .my-nav-link span {
+    display: inline;
+    transition: 2s;
+}
+.my-nav-link.aktif {
+    overflow-x: hidden;
+    background: #7896ff;
+    border-radius: 5px;
+}
+.my-nav-link:hover {
+    background: #7896ff;
+    border-radius: 5px;
+}
+.side-nav-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+}
+
+/* content */
+.box-profile {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+}
+h2.username {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #080f25;
+}
+h4.desc {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #4e5362;
+}
+.my-btn {
+    background: #e9ecfe;
+    border-radius: 5px;
+}
+.my-btn-danger {
+    background: #fee9e9;
+}
+
+/* login form & regist */
+h1.form-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    color: #ffffff;
+}
+h1.form-login-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #222633;
+}
+.my-bg-primary {
+    background-color: #5378fa;
+}
+.my-btn-form {
+    width: 100%;
+    background: #5378fa;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+}
+.my-btn-form.seccond {
+    background: #eff1ff;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #5378fa;
+}
+.my-btn-form:hover {
+    color: white;
+    background: #3660f8;
+}
