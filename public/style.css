@@ -105,7 +105,7 @@ h1.title-nav {
     color: #ffffff;
 }
 
-/* content */
+/* content overview */
 .box-profile {
     width: 140px;
     height: 140px;
@@ -132,6 +132,27 @@ h4.desc {
 }
 .my-btn-danger {
     background: #fee9e9;
+}
+h1.average-overview {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #080f25;
+}
+h3.value-average {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 97px;
+    color: #21d805;
+    margin-bottom: 0;
+}
+.point .font {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 0px;
 }
 
 /* login form & regist */
@@ -174,4 +195,55 @@ h1.form-login-title {
 .my-btn-form:hover {
     color: white;
     background: #3660f8;
+}
+
+/* table */
+h1.title-box {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #293049;
+    position: relative;
+    padding-left: 20px;
+}
+h1.title-box::before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    background-color: var(--bcg-primary);
+    border-radius: 3px;
+}
+.my-table .header {
+    border-bottom: 2px solid #dadada;
+}
+.my-table-header {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 19px;
+    color: #293049;
+}
+.my-table-main {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    color: #293049;
+}
+.table-value {
+    border-bottom: 1px solid #f0f0f0;
+}
+.table-value:hover {
+    background-color: rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+    color: #20263b;
+}
+.table-value:hover .my-table-main {
+    color: #121624;
+    transition: 0.5s;
 }

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nis')->nullable();
             $table->string('alamat')->nullable();
+            $table->foreignId("sekolah_id");
             $table->foreignId("role_id");
             $table->foreignId("kelas_id")->nullable();
             $table->foreignId("walikelas_id")->nullable();

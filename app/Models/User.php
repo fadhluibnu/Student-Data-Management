@@ -56,8 +56,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(TahunUjian::class);
     }
-    public function wali_kelas()
+    public function walikelas()
     {
         return $this->belongsTo(WaliKelas::class);
+    }
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class);
     }
 }

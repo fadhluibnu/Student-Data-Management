@@ -14,7 +14,7 @@ class WaliKelas extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'walikelas_id');
     }
     public function data_nilai_siswas()
     {

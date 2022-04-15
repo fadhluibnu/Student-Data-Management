@@ -5,7 +5,14 @@
 
     @include('layouts.link')
 
-    <title>Hello, world!</title>
+    <title>{{ $title }} @can('admin')
+            | Administrator
+            @endcan @can('guru')
+            | Guru
+            @endcan @can('siswa')
+            | Siswa
+        @endcan | SDAMA
+    </title>
 </head>
 
 <body @if (Request::is('login')) style="height: 100vh" class="d-flex" @endif>

@@ -6,6 +6,7 @@ use App\Models\DataNilaiSiswa;
 use App\Models\JenisUjian;
 use App\Models\Kelas;
 use App\Models\Role;
+use App\Models\Sekolah;
 use App\Models\TahunUjian;
 use App\Models\User;
 use App\Models\WaliKelas;
@@ -73,6 +74,14 @@ class DatabaseSeeder extends Seeder
         //     'tahun' => '2022 - 2023',
         //     'slug' => '20222023'
         // ]);
+        // Sekolah::create([
+        //     'id_sekolah' => '01STELKOMSCHOOLS',
+        //     'nama' => 'Telkom Schools'
+        // ]);
+        // Sekolah::create([
+        //     'id_sekolah' => '02SSCHOOLS',
+        //     'nama' => 'Schools'
+        // ]);
 
 
         // User::create([
@@ -80,6 +89,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => "fibnu@gmail.com",
         //     'password' => bcrypt(12345),
         //     'nis' => "310312079",
+        //     'sekolah_id' => 1,
         //     'role_id' => 3,
         //     'kelas_id' => 1,
         // ]);
@@ -88,6 +98,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => "abbad@gmail.com",
         //     'password' => bcrypt(12345),
         //     'nis' => "310312888",
+        //     'sekolah_id' => 2,
         //     'role_id' => 3,
         //     'kelas_id' => 3,
         // ]);
@@ -97,6 +108,7 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt(12345),
         //     'nis' => "310312079",
         //     'alamat' => "Kebumen",
+        //     'sekolah_id' => 1,
         //     'role_id' => 2,
         //     'walikelas_id' => 1
         // ]);
@@ -105,6 +117,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => "f.ibnu@gmail.com",
         //     'password' => bcrypt(12345),
         //     'nis' => "310312079",
+        //     'sekolah_id' => 1,
         //     'alamat' => "Kebumen",
         //     'role_id' => 1
         // ]);
@@ -113,15 +126,19 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'jenis_ujian_id' => 1,
             'tahun_ujian_id' => 2,
-            'pkn' => "80",
-            'mtk' => "86"
+            'pkn' => 80,
+            'mtk' => 86,
+            'ing' => 90,
+            'ind' => 85
         ]);
         DataNilaiSiswa::create([
             'user_id' => 2,
             'jenis_ujian_id' => 1,
             'tahun_ujian_id' => 2,
-            'pkn' => "90",
-            'mtk' => "85"
+            'pkn' => 90,
+            'mtk' => 85,
+            'ing' => 95,
+            'ind' => 80
         ]);
     }
 }

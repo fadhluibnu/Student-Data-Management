@@ -18,8 +18,10 @@ class CreateDataNilaiSiswasTable extends Migration
             $table->foreignId("user_id");
             $table->foreignId("jenis_ujian_id");
             $table->foreignId("tahun_ujian_id");
-            $table->string('pkn');
-            $table->string('mtk');
+            $table->integer('pkn');
+            $table->integer('mtk');
+            $table->integer('ing');
+            $table->integer('ind');
             $table->timestamps();
         });
     }
