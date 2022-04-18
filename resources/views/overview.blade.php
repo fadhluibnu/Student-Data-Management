@@ -11,42 +11,138 @@
                             <div class="col-6 col-md-4 col-lg-4">
                                 <div class="bg-white p-4 rounded-3 ">
                                     <h1 class="title-box">Nilai Rata Rata</h1>
-                                    <div class="d-flex align-items-start">
-                                        <h3 class="value-average">{{ $avgStudent }}</h3>
-                                        <p style="color: #21d805" class="mt-3 ms-2"><i class="bi bi-check-circle-fill"></i>
-                                        </p>
-                                    </div>
-                                    <div class="point" style="margin-top: -10px">
-                                        <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.9);">...........</p>
-                                        <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.6);">.......</p>
-                                        <p class="m-0 p-0 font" style="color: #FDB2B2;">...</p>
-                                    </div>
+                                    @if ($avgStudent == false)
+                                        <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
+                                    @else
+                                        <div class="d-flex align-items-start">
+                                            <h3 class="value-average">{{ $avgStudent }}</h3>
+                                            <p style="color: #21d805" class="mt-3 ms-2"><i
+                                                    class="bi bi-check-circle-fill"></i>
+                                            </p>
+                                        </div>
+                                        <div class="point" style="margin-top: -10px">
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.9);">...........</p>
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.6);">.......</p>
+                                            <p class="m-0 p-0 font" style="color: #FDB2B2;">...</p>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-4">
                                 <div class="bg-white p-4 rounded-3">
                                     <h1 class="title-box">Nilai Tertinggi</h1>
-                                    <div class="d-flex align-items-start">
-                                        <h3 class="value-average">{{ $scoreHigh }}</h3>
-                                        <p style="color: #21d805" class="mt-3 ms-2"><i class="bi bi-check-circle-fill"></i>
-                                        </p>
-                                    </div>
-                                    <div class="point" style="margin-top: -10px">
-                                        <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.9);">...........</p>
-                                        <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.6);">.......</p>
-                                        <p class="m-0 p-0 font" style="color: #FDB2B2;">...</p>
-                                    </div>
+                                    @if ($scoreHigh == false)
+                                        <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
+                                    @else
+                                        <div class="d-flex align-items-start">
+                                            <h3 class="value-average">{{ $scoreHigh }}</h3>
+                                            <p style="color: #21d805" class="mt-3 ms-2"><i
+                                                    class="bi bi-check-circle-fill"></i>
+                                            </p>
+                                        </div>
+                                        <div class="point" style="margin-top: -10px">
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.9);">...........</p>
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.6);">.......</p>
+                                            <p class="m-0 p-0 font" style="color: #FDB2B2;">...</p>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-4">
-                                <div class="bg-white p-4 rounded-3"></div>
+                                <div class="bg-white p-4 rounded-3">
+                                    <h1 class="title-box">Rangking Kelas</h1>
+                                    @if ($rank == false)
+                                        <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
+                                    @else
+                                        <div class="d-flex align-items-start">
+                                            <h3 class="value-average">{{ $rank }}</h3>
+                                            <p style="color: #21d805" class="mt-3 ms-2"><i
+                                                    class="bi bi-check-circle-fill"></i>
+                                            </p>
+                                        </div>
+                                        <div class="point" style="margin-top: -10px">
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.9);">...........</p>
+                                            <p class="mb-3 p-0 font" style="color: rgba(31, 199, 4, 0.6);">.......</p>
+                                            <p class="m-0 p-0 font" style="color: #FDB2B2;">...</p>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col">
                                 <div class="container bg-white p-4 rounded-3 my-table">
-                                    <h1 class="title-box">Nilai Ujian</h1>
+                                    <form action="/" method="get" class="d-flex align-items-center">
+                                        <h1 class="title-box mb-0">Nilai Ujian</h1>
+                                        <div class="dropdown ms-2">
+                                            @if ($allScore == false)
+                                                <button
+                                                    class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                    type="button" id="jenisUjian" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    {{ request('jenis_ujian') }}
+                                                </button>
+                                                <input type="hidden" id="jenisSelect" name="jenis_ujian"
+                                                    value="{{ request('jenis_ujian') }}">
+                                            @else
+                                                <button
+                                                    class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                    type="button" id="jenisUjian" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    @foreach ($allScore as $item)
+                                                        {{ $item->jenis_ujian->ujian }}
+                                                    @endforeach
+                                                </button>
+                                                @foreach ($allScore as $item)
+                                                    <input type="hidden" id="jenisSelect" name="jenis_ujian"
+                                                        value="{{ $item->jenis_ujian->slug }}">
+                                                @endforeach
+                                            @endif
+                                            <ul class="dropdown-menu" aria-labelledby="jenisUjian" onclick="showButton()">
+                                                @foreach ($jnsUjian as $item)
+                                                    <li class="dropdown-input jenis-ujian"
+                                                        data-slug-jenis="{{ $item->slug }}">
+                                                        {{ $item->ujian }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown ms-2">
+                                            @if ($allScore == false)
+                                                <button
+                                                    class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                    type="button" id="tahunUjian" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    {{ request('tahun_ujian') }}
+                                                </button>
+                                                <input type="hidden" id="tahunSelect" name="tahun_ujian"
+                                                    value="{{ request('tahun_ujian') }}">
+                                            @else
+                                                <button
+                                                    class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                    type="button" id="tahunUjian" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    @foreach ($allScore as $item)
+                                                        {{ $item->tahun_ujian->tahun }}
+                                                    @endforeach
+                                                </button>
+                                                @foreach ($allScore as $item)
+                                                    <input type="hidden" id="tahunSelect" name="tahun_ujian"
+                                                        value="{{ $item->tahun_ujian->slug }}">
+                                                @endforeach
+                                            @endif
+                                            <ul class="dropdown-menu" aria-labelledby="tahunUjian" onclick="showButton()">
+                                                @foreach ($thnUjian as $item)
+                                                    <li class="dropdown-input tahun-ujian"
+                                                        data-slug-tahun="{{ $item->slug }}">
+                                                        {{ $item->tahun }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-primary ms-2 d-none" type="submit" id="cek-nilai-btn">Cek
+                                            Nilai</button>
+                                    </form>
                                     <div class="row header mt-4 p-2">
                                         <div class="col-8">
                                             <span class="my-table-header">Mata Pelajaran</span>
@@ -58,80 +154,88 @@
                                             <span class="my-table-header">Status</span>
                                         </div>
                                     </div>
-                                    @foreach ($allScore as $item)
+                                    @if ($allScore == false)
                                         <div class="row table-value p-2">
-                                            <div class="col-8">
-                                                <span class="my-table-main">Pendidikan Kewarganegaraan</span>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">{{ $item->pkn }}</span>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">
-                                                    @if ($item->pkn >= 70)
-                                                        <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
-                                                    @endif
-                                                    @if ($item->pkn <= 69)
-                                                        <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
-                                                    @endif
-                                                </span>
+                                            <div class="col-12 text-center">
+                                                <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
                                             </div>
                                         </div>
-                                        <div class="row table-value p-2">
-                                            <div class="col-8">
-                                                <span class="my-table-main">Matematika</span>
+                                    @else
+                                        @foreach ($allScore as $item)
+                                            <div class="row table-value p-2">
+                                                <div class="col-8">
+                                                    <span class="my-table-main">Pendidikan Kewarganegaraan</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">{{ $item->pkn }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">
+                                                        @if ($item->pkn >= 70)
+                                                            <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
+                                                        @endif
+                                                        @if ($item->pkn <= 69)
+                                                            <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
+                                                        @endif
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main ">{{ $item->mtk }}</span>
+                                            <div class="row table-value p-2">
+                                                <div class="col-8">
+                                                    <span class="my-table-main">Matematika</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main ">{{ $item->mtk }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">
+                                                        @if ($item->mtk >= 70)
+                                                            <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
+                                                        @endif
+                                                        @if ($item->mtk <= 69)
+                                                            <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
+                                                        @endif
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">
-                                                    @if ($item->mtk >= 70)
-                                                        <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
-                                                    @endif
-                                                    @if ($item->mtk <= 69)
-                                                        <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
-                                                    @endif
-                                                </span>
+                                            <div class="row table-value p-2">
+                                                <div class="col-8">
+                                                    <span class="my-table-main">Bahasa Inggris</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">{{ $item->ing }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">
+                                                        @if ($item->ing >= 70)
+                                                            <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
+                                                        @endif
+                                                        @if ($item->ing <= 69)
+                                                            <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
+                                                        @endif
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row table-value p-2">
-                                            <div class="col-8">
-                                                <span class="my-table-main">Bahasa Inggris</span>
+                                            <div class="row table-value p-2">
+                                                <div class="col-8">
+                                                    <span class="my-table-main">Bahasa Indonesia</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">{{ $item->ind }}</span>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <span class="my-table-main">
+                                                        @if ($item->ind >= 70)
+                                                            <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
+                                                        @endif
+                                                        @if ($item->ind <= 69)
+                                                            <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
+                                                        @endif
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">{{ $item->ing }}</span>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">
-                                                    @if ($item->ing >= 70)
-                                                        <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
-                                                    @endif
-                                                    @if ($item->ing <= 69)
-                                                        <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
-                                                    @endif
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="row table-value p-2">
-                                            <div class="col-8">
-                                                <span class="my-table-main">Bahasa Indonesia</span>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">{{ $item->ind }}</span>
-                                            </div>
-                                            <div class="col-2 text-center">
-                                                <span class="my-table-main">
-                                                    @if ($item->ind >= 70)
-                                                        <i class="bi bi-check-circle-fill" style="color: #21d805"></i>
-                                                    @endif
-                                                    @if ($item->ind <= 69)
-                                                        <i class="bi bi-x-circle-fill" style="color: #d80505"></i>
-                                                    @endif
-                                                </span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>

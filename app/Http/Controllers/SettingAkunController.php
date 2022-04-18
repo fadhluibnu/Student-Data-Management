@@ -13,7 +13,9 @@ class SettingAkunController extends Controller
      */
     public function index()
     {
-        //
+        return view('setting-akun', [
+            'title' => 'Setting Akun'
+        ]);
     }
 
     /**

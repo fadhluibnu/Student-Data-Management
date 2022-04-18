@@ -14,6 +14,6 @@ class TahunUjian extends Model
     }
     public function data_nilai_siswas()
     {
-        return $this->hasMany(DataNilaiSiswa::class);
+        return $this->hasMany(DataNilaiSiswa::class, 'tahun_ujian_id');
     }
 }

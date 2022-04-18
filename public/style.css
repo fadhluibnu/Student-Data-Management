@@ -247,3 +247,46 @@ h1.title-box::before {
     color: #121624;
     transition: 0.5s;
 }
+.my-costume-table {
+    font-size: 14px !important;
+    padding: 6px 6px !important;
+    border-color: #c6c6c7;
+}
+.my-costume-table:hover {
+    background-color: white !important;
+    border-color: #c6c6c7;
+    color: #6c757d;
+}
+.my-costume-table.show {
+    transition: 0.5s !important;
+}
+.my-costume-table:active,
+.my-costume-table:focus-within,
+.my-costume-table.show {
+    color: #6c757d !important;
+    background-color: white !important;
+    border-color: #c6c6c7 !important;
+}
+.my-costume-table:focus {
+    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%) !important;
+    border-color: rgb(49 132 253 / 70%) !important;
+}
+.dropdown-input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 5px;
+}
+.dropdown-input:hover {
+    background-color: #ececec;
+}
+.dropdown-input:focus {
+    background-color: var(--bcg-primary);
+    color: white;
+}
+.btn-primary {
+    padding: 6px 12px !important;
+    background-color: var(--bcg-primary);
+    border: var(--bcg-primary);
+    font-size: 14px;
+}

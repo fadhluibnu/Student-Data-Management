@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [OverviewController::class, 'index'])->middleware('auth');
+// Route::post('/', [OverviewController::class, 'index'])->middleware('auth');
 Route::get('/dataguru', function () {
     return 'Data Guru';
 })->middleware('admin');

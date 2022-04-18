@@ -9,7 +9,7 @@
         <div class="line"></div>
         <ul class="navbar-nav mt-3">
             <li class="nav-item">
-                <a href="" class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('/') ? 'aktif' : '' }}">
+                <a href="/" class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('/') ? 'aktif' : '' }}">
                     <i class="
                     bi bi-columns-gap me-4" id="icon-navside"></i>
                     <span>Overview</span>
@@ -36,7 +36,8 @@
         <h2 class="side-nav-title mt-4">Akun</h2>
         <ul class="navbar-nav mt-3">
             <li class="nav-item">
-                <a href="/setting" class="nav-link my-nav-link d-flex p-3 py-2">
+                <a href="/setting"
+                    class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('setting') ? 'aktif' : '' }}">
                     <i class="bi bi-gear me-4" id="icon-navside"></i>
                     <span>Pengaturan</span>
                 </a>
