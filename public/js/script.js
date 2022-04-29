@@ -30,7 +30,6 @@ function areaCollapse() {
     collapsArea.classList.add("hidden-area-collapse");
     collapsArea.classList.remove("show-area-collapse");
 }
-
 function setInput(classHtml, inputHtml, textHtml, dataHtml) {
     var dropInput = document.getElementsByClassName(classHtml),
         len = dropInput.length,
@@ -46,14 +45,4 @@ function setInput(classHtml, inputHtml, textHtml, dataHtml) {
     for (i = 0; i < len; i += 1) {
         dropInput[i].onclick = click;
     }
-}
-
-document.getElementById("jenisUjian").addEventListener("click", function () {
-    setInput("jenis-ujian", "jenisSelect", "jenisUjian", "data-slug-jenis");
-});
-document.getElementById("tahunUjian").addEventListener("click", function () {
-    setInput("tahun-ujian", "tahunSelect", "tahunUjian", "data-slug-tahun");
-});
-function showButton() {
-    document.getElementById("cek-nilai-btn").classList.remove("d-none");
 }

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="col" style="height: 100%; overflow-y: scroll">
-        <div class="hidden-area-collapse p-3 position-absolute" id="collapse-area" onclick="areaCollapse()"></div>
+        <div id="js-load-overview"></div>
         <div class="container-fluid mt-4">
             <div class="row flex-column-reverse flex-lg-row">
                 <div class="col-lg-8 mt-3 mt-lg-0">
@@ -69,22 +69,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <div class="container bg-white p-4 rounded-3 my-table">
-                                    <form action="/" method="get" class="d-flex align-items-center">
-                                        <h1 class="title-box mb-0">Nilai Ujian</h1>
-                                        <div class="dropdown ms-2">
-                                            @if ($allScore == false)
+                    @endcan
+                    <div class="row @can('siswa') mt-3 @endcan">
+                        <div class="col">
+                            <div class="container bg-white p-4 rounded-3 my-table">
+                                <form action="/" method="get" class="d-flex align-items-center">
+                                    <h1 class="title-box mb-0">
+                                        @can('siswa')
+                                            Nilai Ujian
+                                        @endcan
+                                        @can('guru')
+                                            Daftar Siswa
+                                        @endcan
+                                    </h1>
+                                    <div class="dropdown ms-2">
+                                        @if ($allScore == false)
+                                            <button
+                                                class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                type="button" id="jenisUjian" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                {{ request('jenis_ujian') }}
+                                            </button>
+                                            <input type="hidden" id="jenisSelect" name="jenis_ujian"
+                                                value="{{ request('jenis_ujian') }}">
+                                        @else
+                                            @can('guru')
                                                 <button
                                                     class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
                                                     type="button" id="jenisUjian" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
-                                                    {{ request('jenis_ujian') }}
+                                                    {{-- @foreach ($allScore as $item) --}}
+                                                    {{ $allScore[0]['jenis_ujian'] }}
+                                                    {{-- @endforeach --}}
                                                 </button>
+                                                {{-- @foreach ($allScore as $item) --}}
                                                 <input type="hidden" id="jenisSelect" name="jenis_ujian"
-                                                    value="{{ request('jenis_ujian') }}">
-                                            @else
+                                                    value="{{ $allScore[0]['jenis_ujian_slug'] }}">
+                                                {{-- @endforeach --}}
+                                            @endcan
+                                            @can('siswa')
                                                 <button
                                                     class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
                                                     type="button" id="jenisUjian" data-bs-toggle="dropdown"
@@ -97,27 +120,43 @@
                                                     <input type="hidden" id="jenisSelect" name="jenis_ujian"
                                                         value="{{ $item->jenis_ujian->slug }}">
                                                 @endforeach
-                                            @endif
-                                            <ul class="dropdown-menu" aria-labelledby="jenisUjian" onclick="showButton()">
-                                                @foreach ($jnsUjian as $item)
-                                                    <li class="dropdown-input jenis-ujian"
-                                                        data-slug-jenis="{{ $item->slug }}">
-                                                        {{ $item->ujian }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <div class="dropdown ms-2">
-                                            @if ($allScore == false)
+                                            @endcan
+                                        @endif
+                                        <ul class="dropdown-menu" aria-labelledby="jenisUjian" onclick="showButton()">
+                                            @foreach ($jnsUjian as $item)
+                                                <li class="dropdown-input jenis-ujian"
+                                                    data-slug-jenis="{{ $item->slug }}">
+                                                    {{ $item->ujian }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown ms-2">
+                                        @if ($allScore == false)
+                                            <button
+                                                class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
+                                                type="button" id="tahunUjian" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                {{ request('tahun_ujian') }}
+                                            </button>
+                                            <input type="hidden" id="tahunSelect" name="tahun_ujian"
+                                                value="{{ request('tahun_ujian') }}">
+                                        @else
+                                            @can('guru')
                                                 <button
                                                     class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
                                                     type="button" id="tahunUjian" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
-                                                    {{ request('tahun_ujian') }}
+                                                    {{-- @foreach ($allScore as $item) --}}
+                                                    {{ $allScore[0]['tahun_ujian'] }}
+                                                    {{-- @endforeach --}}
                                                 </button>
+                                                {{-- @foreach ($allScore as $item) --}}
                                                 <input type="hidden" id="tahunSelect" name="tahun_ujian"
-                                                    value="{{ request('tahun_ujian') }}">
-                                            @else
+                                                    value="{{ $allScore[0]['tahun_ujian_slug'] }}">
+                                                {{-- @endforeach --}}
+                                            @endcan
+                                            @can('siswa')
                                                 <button
                                                     class="btn btn-outline-secondary my-costume-table dropdown-toggle show-button"
                                                     type="button" id="tahunUjian" data-bs-toggle="dropdown"
@@ -130,19 +169,21 @@
                                                     <input type="hidden" id="tahunSelect" name="tahun_ujian"
                                                         value="{{ $item->tahun_ujian->slug }}">
                                                 @endforeach
-                                            @endif
-                                            <ul class="dropdown-menu" aria-labelledby="tahunUjian" onclick="showButton()">
-                                                @foreach ($thnUjian as $item)
-                                                    <li class="dropdown-input tahun-ujian"
-                                                        data-slug-tahun="{{ $item->slug }}">
-                                                        {{ $item->tahun }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <button class="btn btn-primary ms-2 d-none" type="submit" id="cek-nilai-btn">Cek
-                                            Nilai</button>
-                                    </form>
+                                            @endcan
+                                        @endif
+                                        <ul class="dropdown-menu" aria-labelledby="tahunUjian" onclick="showButton()">
+                                            @foreach ($thnUjian as $item)
+                                                <li class="dropdown-input tahun-ujian"
+                                                    data-slug-tahun="{{ $item->slug }}">
+                                                    {{ $item->tahun }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-primary ms-2 d-none" type="submit" id="cek-nilai-btn">Cek
+                                        Nilai</button>
+                                </form>
+                                @can('siswa')
                                     <div class="row header mt-4 p-2">
                                         <div class="col-8">
                                             <span class="my-table-header">Mata Pelajaran</span>
@@ -154,14 +195,16 @@
                                             <span class="my-table-header">Status</span>
                                         </div>
                                     </div>
-                                    @if ($allScore == false)
-                                        <div class="row table-value p-2">
-                                            <div class="col-12 text-center">
-                                                <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
-                                            </div>
+                                @endcan
+                                @if ($allScore == false)
+                                    <div class="row table-value p-2">
+                                        <div class="col-12 text-center">
+                                            <span class="my-table-main text-danger">Data Tidak Ditemukan</span>
                                         </div>
-                                    @else
-                                        @foreach ($allScore as $item)
+                                    </div>
+                                @else
+                                    @foreach ($allScore as $item)
+                                        @can('siswa')
                                             <div class="row table-value p-2">
                                                 <div class="col-8">
                                                     <span class="my-table-main">Pendidikan Kewarganegaraan</span>
@@ -234,12 +277,68 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    @endif
-                                </div>
+                                        @endcan
+                                    @endforeach
+                                @endif
+
+                                @can('guru')
+                                    <div class="fit mt-4" style="width: inherit;overflow-x: auto;">
+                                        <div class="over" style="width: fit-content">
+                                            <div class="d-flex p-2">
+                                                <div class="nomor">
+                                                    <span class="my-table-header">No</span>
+                                                </div>
+                                                <div class="nama-guru">
+                                                    <span class="my-table-header">Nama</span>
+                                                </div>
+                                                <div class="text-center mapel">
+                                                    <span class="my-table-header">PPKn</span>
+                                                </div>
+                                                <div class="text-center mapel">
+                                                    <span class="my-table-header">MTK</span>
+                                                </div>
+                                                <div class="text-center mapel">
+                                                    <span class="my-table-header">ING</span>
+                                                </div>
+                                                <div class="text-center mapel">
+                                                    <span class="my-table-header">IND</span>
+                                                </div>
+                                                <div class="text-center mapel">
+                                                    <span class="my-table-header">IND</span>
+                                                </div>
+                                            </div>
+                                            @foreach ($allScore as $item)
+                                                <div class="d-flex table-value p-2">
+                                                    <div class="nomor">
+                                                        <span class="my-table-main">{{ $loop->iteration }}</span>
+                                                    </div>
+                                                    <div class="nama-guru">
+                                                        <span class="my-table-main">{{ $item['nama'] }}</span>
+                                                    </div>
+                                                    <div class="text-center mapel">
+                                                        <span class="my-table-main">{{ $item['pkn'] }}</span>
+                                                    </div>
+                                                    <div class="text-center mapel">
+                                                        <span class="my-table-main ">{{ $item['mtk'] }}</span>
+                                                    </div>
+                                                    <div class="text-center mapel">
+                                                        <span class="my-table-main">{{ $item['ing'] }}</span>
+                                                    </div>
+                                                    <div class="text-center mapel">
+                                                        <span class="my-table-main">{{ $item['ind'] }}</span>
+                                                    </div>
+                                                    <div class="text-center mapel">
+                                                        <span class="my-table-main">{{ $item['ind'] }}</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
-                    @endcan
+                    </div>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="bg-white p-4 rounded-3 text-center">
@@ -265,7 +364,7 @@
                             @endcan
                             <h4 class="desc">{{ $item->sekolah->nama }}</h4>
                         @endforeach
-                        <a href="" class="btn my-btn mt-2" style="width: 100%">
+                        <a href="/setting" class="btn my-btn mt-2" style="width: 100%">
                             <i class="bi bi-pen me-2"></i>Edit Profile
                         </a>
                     </div>

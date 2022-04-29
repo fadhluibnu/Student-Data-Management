@@ -20,7 +20,8 @@
             <h2 class="side-nav-title mt-4">Admin</h2>
             <ul class="navbar-nav mt-3">
                 <li class="nav-item">
-                    <a href="/dataguru" class="nav-link my-nav-link d-flex p-3 py-2">
+                    <a href="/dataguru"
+                        class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('dataguru*') ? 'aktif' : '' }}">
                         <i class="bi bi-gear me-4" id="icon-navside"></i>
                         <span>Data Guru</span>
                     </a>

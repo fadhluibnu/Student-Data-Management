@@ -16,13 +16,14 @@ class OverviewController extends Controller
     public $result_average;
     public $arrLength;
     public $scoreHigh;
-    public $getNilai;
+    // public $getNilai;
     public $getTahunUjian;
     public $getJeniUjian;
     public $getRank;
     public $rank_student;
     public function index()
     {
+        $getNilai = null;
         $average = [];
         $avgRank = [];
         if (auth()->user()->role_id == 1) {
@@ -31,16 +32,55 @@ class OverviewController extends Controller
 
         if (auth()->user()->role_id == 2) {
             $role = User::where('id', auth()->user()->id)->get();
+            $getNilai = DataNilaiSiswa::whereHas('user', function (Builder $query) {
+                $query->where('sekolah_id', auth()->user()->sekolah_id)
+                    ->where('kelas_id', auth()->user()->walikelas_id)
+                    ->where('role_id', 3);
+            })->whereHas('tahun_ujian', function (Builder $query,) {
+                $query->where('slug', date('m') == 06 ? date("Y") . date("Y") + 1 : date("Y") - 1 . date("Y"));
+            });
+            if (request('jenis_ujian') || request('tahun_ujian')) {
+                $getNilai = $getNilai->filter(request(['jenis_ujian', 'tahun_ujian']))->get();
+                // return $getNilai;
+            } else {
+                $getNilai = $getNilai->orderBy("id", 'desc')->limit(DB::table('users')->where('sekolah_id', auth()->user()->sekolah_id)
+                    ->where('kelas_id', auth()->user()->walikelas_id)
+                    ->where('role_id', 3)
+                    ->count())->get();
+
+                // return $getNilai[0]->jenis_ujian->ujian;
+            }
+            $siswa = [];
+            foreach ($getNilai as $key) {
+                $siswa[] = [
+                    'nama' => $key->user->name,
+                    'mtk' => $key->mtk,
+                    'ing' => $key->ing,
+                    'ind' => $key->ind,
+                    'pkn' => $key->pkn,
+                    'jenis_ujian' => $key->jenis_ujian->ujian,
+                    'jenis_ujian_slug' => $key->jenis_ujian->slug,
+                    'tahun_ujian' => $key->tahun_ujian->tahun,
+                    'tahun_ujian_slug' => $key->tahun_ujian->slug
+                ];
+            }
+            // return $siswa;
+            $siswa = collect($siswa);
+            $getNilai = $siswa->sortBy(['nama', 'asc']);
+            if (count($getNilai) == 0) {
+                $getNilai = false;
+                $this->scoreHigh = false;
+                $this->result_average = false;
+                $this->rank_student = false;
+            }
+            // return $getNilai[0]['nama'];
         };
 
         if (auth()->user()->role_id == 3) {
-
             $role = User::where('id', auth()->user()->id)->get();
-            $year = date("Y");
-            $nextYear = $year + 1;
 
             if (request('jenis_ujian') || request('tahun_ujian')) {
-                $this->getNilai = DataNilaiSiswa::where('user_id', auth()->user()->id)->filter(request(['jenis_ujian', 'tahun_ujian']))->get();
+                $getNilai = DataNilaiSiswa::where('user_id', auth()->user()->id)->filter(request(['jenis_ujian', 'tahun_ujian']))->get();
 
                 $this->getRank = DataNilaiSiswa::whereHas('user', function (Builder $query) {
                     $query->where('sekolah_id', auth()->user()->sekolah_id)
@@ -51,7 +91,7 @@ class OverviewController extends Controller
                     ->where('role_id', auth()->user()->role_id)
                     ->count())->get();
             } else {
-                $this->getNilai = DataNilaiSiswa::where('user_id', auth()->user()->id)->whereHas('tahun_ujian', function (Builder $query,) {
+                $getNilai = DataNilaiSiswa::where('user_id', auth()->user()->id)->whereHas('tahun_ujian', function (Builder $query,) {
                     $query->where('slug', date('m') == 06 ? date("Y") . date("Y") + 1 : date("Y") - 1 . date("Y"));
                 })->orderBy('id', 'desc')->limit(1)->get();
 
@@ -68,12 +108,9 @@ class OverviewController extends Controller
                     ->count())->get();
             }
 
-            $this->getTahunUjian = TahunUjian::all();
-            $this->getJeniUjian = JenisUjian::all();
+            if (count($getNilai) == 1) {
 
-            if (count($this->getNilai) == 1) {
-
-                foreach ($this->getNilai as $key) {
+                foreach ($getNilai as $key) {
                     $average[] = $key->mtk;
                     $average[] = $key->pkn;
                     $average[] = $key->ing;
@@ -103,13 +140,15 @@ class OverviewController extends Controller
                     $indx++;
                 }
             } else {
-                $this->getNilai = false;
+                $getNilai = false;
                 $this->scoreHigh = false;
                 $this->result_average = false;
                 $this->rank_student = false;
             };
         };
 
+        $this->getTahunUjian = TahunUjian::all();
+        $this->getJeniUjian = JenisUjian::all();
         foreach ($role as $key) {
             $nama = $key->name;
         }
@@ -119,7 +158,7 @@ class OverviewController extends Controller
             'title' => $nama,
             'avgStudent' => $this->result_average,
             'scoreHigh' => $this->scoreHigh,
-            'allScore' => $this->getNilai,
+            'allScore' => $getNilai,
             'thnUjian' => $this->getTahunUjian,
             'jnsUjian' => $this->getJeniUjian,
             'rank' => $this->rank_student

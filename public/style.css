@@ -1,9 +1,22 @@
 body {
     font-family: "Inter", sans-serif;
     background-color: #f6f7ff;
+    color: #293049 !important;
 }
 :root {
     --bcg-primary: #5378fa;
+}
+/* scroll */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgb(0 0 0 / 26%);
 }
 .container-fluid {
     height: 100vh;
@@ -224,7 +237,7 @@ h1.title-box::before {
 .my-table-header {
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 19px;
     color: #293049;
 }
@@ -290,3 +303,49 @@ h1.title-box::before {
     border: var(--bcg-primary);
     font-size: 14px;
 }
+
+.nama-guru {
+    width: 216px;
+}
+.mapel {
+    width: 100px;
+}
+.nomor {
+    width: 40px;
+}
+.nis-data {
+    width: 120px;
+}
+.nama-data {
+    width: 150px;
+}
+.email-data {
+    width: 200px;
+}
+.alamat-data {
+    width: 210px;
+}
+.option {
+    width: 120px;
+}
+/* setting akun */
+.font-setting {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+}
+.font-setting-inp {
+    font-weight: 600;
+    background-color: #f6f7ff !important;
+    color: #4b526a !important;
+}
+/* #password {
+    display: none;
+}
+#password:target {
+    display: block;
+}
+#password:target .ganti-pass {
+    display: flex;
+} */

@@ -46,18 +46,18 @@ class DatabaseSeeder extends Seeder
         //     'walas' => "XI RPL 6",
         //     'slug' => "xirpl6"
         // ]);
-        // Role::create([
-        //     'role' => 'Administrator',
-        //     'slug' => "administrator"
-        // ]);
-        // Role::create([
-        //     'role' => 'Guru',
-        //     'slug' => 'guru'
-        // ]);
-        // Role::create([
-        //     'role' => 'Siswa',
-        //     'slug' => 'siswa'
-        // ]);
+        Role::create([
+            'role' => 'Administrator',
+            'slug' => "administrator"
+        ]);
+        Role::create([
+            'role' => 'Guru',
+            'slug' => 'guru'
+        ]);
+        Role::create([
+            'role' => 'Siswa',
+            'slug' => 'siswa'
+        ]);
         // JenisUjian::create([
         //     'ujian' => "UTS 1",
         //     'slug' => "uts1"
@@ -264,117 +264,117 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // uts 1 2021-2022
-        DataNilaiSiswa::create([
-            'user_id' => 1,
-            'jenis_ujian_id' => 3,
-            'tahun_ujian_id' => 6,
-            'pkn' => 94,
-            'mtk' => 84,
-            'ing' => 86,
-            'ind' => 92
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 2,
-            'jenis_ujian_id' => 3,
-            'tahun_ujian_id' => 6,
-            'pkn' => 82,
-            'mtk' => 82,
-            'ing' => 95,
-            'ind' => 80
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 7,
-            'jenis_ujian_id' => 3,
-            'tahun_ujian_id' => 6,
-            'pkn' => 88,
-            'mtk' => 86,
-            'ing' => 94,
-            'ind' => 90
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 8,
-            'jenis_ujian_id' => 3,
-            'tahun_ujian_id' => 6,
-            'pkn' => 80,
-            'mtk' => 84,
-            'ing' => 95,
-            'ind' => 89
-        ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 1,
+        //     'jenis_ujian_id' => 3,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 94,
+        //     'mtk' => 84,
+        //     'ing' => 86,
+        //     'ind' => 92
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 2,
+        //     'jenis_ujian_id' => 3,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 82,
+        //     'mtk' => 82,
+        //     'ing' => 95,
+        //     'ind' => 80
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 7,
+        //     'jenis_ujian_id' => 3,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 88,
+        //     'mtk' => 86,
+        //     'ing' => 94,
+        //     'ind' => 90
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 8,
+        //     'jenis_ujian_id' => 3,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 80,
+        //     'mtk' => 84,
+        //     'ing' => 95,
+        //     'ind' => 89
+        // ]);
 
-        // uas 1 2021 - 2022
-        DataNilaiSiswa::create([
-            'user_id' => 1,
-            'jenis_ujian_id' => 4,
-            'tahun_ujian_id' => 6,
-            'pkn' => 95,
-            'mtk' => 85,
-            'ing' => 79,
-            'ind' => 94
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 2,
-            'jenis_ujian_id' => 4,
-            'tahun_ujian_id' => 6,
-            'pkn' => 90,
-            'mtk' => 82,
-            'ing' => 95,
-            'ind' => 88
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 7,
-            'jenis_ujian_id' => 4,
-            'tahun_ujian_id' => 6,
-            'pkn' => 82,
-            'mtk' => 88,
-            'ing' => 92,
-            'ind' => 92
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 8,
-            'jenis_ujian_id' => 4,
-            'tahun_ujian_id' => 6,
-            'pkn' => 90,
-            'mtk' => 88,
-            'ing' => 92,
-            'ind' => 98
-        ]);
+        // // uas 1 2021 - 2022
+        // DataNilaiSiswa::create([
+        //     'user_id' => 1,
+        //     'jenis_ujian_id' => 4,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 95,
+        //     'mtk' => 85,
+        //     'ing' => 79,
+        //     'ind' => 94
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 2,
+        //     'jenis_ujian_id' => 4,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 90,
+        //     'mtk' => 82,
+        //     'ing' => 95,
+        //     'ind' => 88
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 7,
+        //     'jenis_ujian_id' => 4,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 82,
+        //     'mtk' => 88,
+        //     'ing' => 92,
+        //     'ind' => 92
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 8,
+        //     'jenis_ujian_id' => 4,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 90,
+        //     'mtk' => 88,
+        //     'ing' => 92,
+        //     'ind' => 98
+        // ]);
 
-        // uts 2 2021 - 2022
-        DataNilaiSiswa::create([
-            'user_id' => 1,
-            'jenis_ujian_id' => 5,
-            'tahun_ujian_id' => 6,
-            'pkn' => 85,
-            'mtk' => 70,
-            'ing' => 92,
-            'ind' => 84
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 2,
-            'jenis_ujian_id' => 5,
-            'tahun_ujian_id' => 6,
-            'pkn' => 98,
-            'mtk' => 80,
-            'ing' => 92,
-            'ind' => 84
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 7,
-            'jenis_ujian_id' => 5,
-            'tahun_ujian_id' => 6,
-            'pkn' => 82,
-            'mtk' => 98,
-            'ing' => 69,
-            'ind' => 90
-        ]);
-        DataNilaiSiswa::create([
-            'user_id' => 8,
-            'jenis_ujian_id' => 5,
-            'tahun_ujian_id' => 6,
-            'pkn' => 92,
-            'mtk' => 88,
-            'ing' => 92,
-            'ind' => 92
-        ]);
+        // // uts 2 2021 - 2022
+        // DataNilaiSiswa::create([
+        //     'user_id' => 1,
+        //     'jenis_ujian_id' => 5,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 85,
+        //     'mtk' => 70,
+        //     'ing' => 92,
+        //     'ind' => 84
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 2,
+        //     'jenis_ujian_id' => 5,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 98,
+        //     'mtk' => 80,
+        //     'ing' => 92,
+        //     'ind' => 84
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 7,
+        //     'jenis_ujian_id' => 5,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 82,
+        //     'mtk' => 98,
+        //     'ing' => 69,
+        //     'ind' => 90
+        // ]);
+        // DataNilaiSiswa::create([
+        //     'user_id' => 8,
+        //     'jenis_ujian_id' => 5,
+        //     'tahun_ujian_id' => 6,
+        //     'pkn' => 92,
+        //     'mtk' => 88,
+        //     'ing' => 92,
+        //     'ind' => 92
+        // ]);
     }
 }

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
 
 <!-- My Style -->
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="/style.css" />
 
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

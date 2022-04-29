@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DataGuruController;
+use App\Http\Controllers\DataKelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\SettingAkunController;
@@ -16,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// auth
 Route::get('/', [OverviewController::class, 'index'])->middleware('auth');
-// Route::post('/', [OverviewController::class, 'index'])->middleware('auth');
-Route::get('/dataguru', function () {
-    return 'Data Guru';
-})->middleware('admin');
 Route::resource('/setting', SettingAkunController::class)->middleware('auth');
+
+// admin
+Route::resource('/dataguru', DataGuruController::class)->middleware('admin');
+Route::resource('/datakelas', DataKelasController::class)->middleware('admin');
+
+// guest
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::post('/login', [LoginController::class, 'auth'])->middleware('guest');
+Route::get('/registrasi', [LoginController::class, 'regist'])->middleware('guest')->name('regist');
+Route::post('/registrasi', [LoginController::class, 'registrasi'])->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');

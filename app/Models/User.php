@@ -40,6 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = ['walikelas', 'sekolah'];
+
     public function jenis_ujian()
     {
         return $this->belongsTo(JenisUjian::class);

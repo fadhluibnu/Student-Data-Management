@@ -17,6 +17,7 @@ class CreateSekolahsTable extends Migration
             $table->id();
             $table->string("id_sekolah");
             $table->string("nama");
+            $table->text("alamat_sekolah");
             $table->timestamps();
         });
     }

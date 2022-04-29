@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\WaliKelas;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
-class SettingAkunController extends Controller
+class DataGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +16,12 @@ class SettingAkunController extends Controller
      */
     public function index()
     {
+        $guru = User::where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 2)->get();
 
-        $user = User::where('id', auth()->user()->id)->get();
 
-        return view('setting-akun', [
-            'title' => 'Setting Akun',
-            'user' => $user
+        return view('admin.data-guru', [
+            'title' => 'Data Guru',
+            'guru' => $guru,
         ]);
     }
 
@@ -33,7 +32,12 @@ class SettingAkunController extends Controller
      */
     public function create()
     {
-        //
+        $walas = WaliKelas::all();
+
+        return view('admin.data-create', [
+            'title' => 'Tambah Data',
+            'walas' => $walas
+        ]);
     }
 
     /**
@@ -44,7 +48,19 @@ class SettingAkunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:App\Models\User',
+            'password' => 'required|min:8',
+            'nis' => 'required|unique:App\Models\User',
+            'alamat' => 'required',
+            'sekolah_id' => 'required',
+            'role_id' => 'required',
+            'walikelas_id' => 'required|unique:App\Models\User'
+        ]);
+        $validate['password'] = Hash::make($validate['password']);
+        User::create($validate);
+        return redirect('/dataguru')->with('success', 'New post has been added!');
     }
 
     /**
@@ -78,25 +94,7 @@ class SettingAkunController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rule = [];
-
-        if ($request->password != null) {
-            $rule += ['password' => 'required'];
-        }
-        if ($request->alamat != null) {
-            $rule += ['alamat' => 'required'];
-        }
-
-
-        $validate  = $request->validate($rule);
-
-        if ($request->password != null) {
-            $validate['password'] = Hash::make($validate['password']);
-        }
-
-        User::where('id', $id)->update($validate);
-
-        return redirect('/setting')->with('updateSucc', 'Profil berhasil diubah');
+        //
     }
 
     /**
