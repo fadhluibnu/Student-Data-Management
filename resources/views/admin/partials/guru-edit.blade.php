@@ -33,7 +33,7 @@
     <div class="mb-3">
         <label for="password_data_guru" class="form-label">Password</label>
         <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
-            id="password_data_guru" placeholder="Password" required value="">
+            id="password_data_guru" placeholder="Password" value="">
         @error('password')
             <div class="  invalid-feedback">
                 {{ $message }}

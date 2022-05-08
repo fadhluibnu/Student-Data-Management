@@ -93,7 +93,8 @@ class DataGuruController extends Controller
         return view('admin.data-create', [
             'title' => 'title',
             'walas' => $user,
-            'link' => 'dataguru'
+            'link' => 'dataguru',
+            'id' => $id
         ]);
     }
 
@@ -106,7 +107,20 @@ class DataGuruController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'nis' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        if ($request->password != null) {
+            $validate += ['password' => 'required|min:8'];
+        };
+
+        User::where('id', $id)->update($validate);
+
+        return redirect('/dataguru')->with('success', 'Data Berhasil Diubah!');
     }
 
     /**
