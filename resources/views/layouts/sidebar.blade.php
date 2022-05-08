@@ -32,6 +32,13 @@
                         <span>Data Siswa</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/datakelas"
+                        class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('datakelas*') ? 'aktif' : '' }}">
+                        <i class="bi bi-gear me-4" id="icon-navside"></i>
+                        <span>Data Kelas</span>
+                    </a>
+                </li>
             </ul>
         @endcan
         <h2 class="side-nav-title mt-4">Akun</h2>

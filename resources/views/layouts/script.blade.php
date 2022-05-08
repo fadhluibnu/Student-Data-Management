@@ -9,3 +9,6 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
 @if (Request::is('dataguru/*'))
     <script src="/js/data-guru.js"></script>
 @endif
+@if (Request::is('datakelas*'))
+    <script src="/js/data-kelas.js"></script>
+@endif

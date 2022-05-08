@@ -297,11 +297,17 @@ h1.title-box::before {
     background-color: var(--bcg-primary);
     color: white;
 }
-.btn-primary {
+.btn-primary,
+.btn-outline-primary {
     padding: 6px 12px !important;
+}
+.btn-primary {
     background-color: var(--bcg-primary);
     border: var(--bcg-primary);
     font-size: 14px;
+}
+.btn-outline-primary {
+    border: var(--bcg-primary);
 }
 
 .nama-guru {
@@ -328,6 +334,9 @@ h1.title-box::before {
 .option {
     width: 120px;
 }
+.walas-data {
+    width: 110px;
+}
 /* setting akun */
 .font-setting {
     font-style: normal;
@@ -340,6 +349,9 @@ h1.title-box::before {
     background-color: #f6f7ff !important;
     color: #4b526a !important;
 }
+
+/* tambah data */
+
 /* #password {
     display: none;
 }

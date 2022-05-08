@@ -90,5 +90,7 @@ class LoginController extends Controller
             'sekolah_id' => $sekolah_id,
             'role_id' => $validateUser['role_id']
         ]);
+
+        return redirect('/');
     }
 }

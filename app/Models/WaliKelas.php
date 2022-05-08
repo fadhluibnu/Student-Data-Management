@@ -12,6 +12,10 @@ class WaliKelas extends Model
         'id'
     ];
 
+    protected $with = [
+        'users'
+    ];
+
     public function users()
     {
         return $this->hasMany(User::class, 'walikelas_id');

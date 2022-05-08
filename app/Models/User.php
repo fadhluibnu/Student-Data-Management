@@ -40,7 +40,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['walikelas', 'sekolah'];
+    protected $with = ['kelas', 'sekolah'];
 
     public function jenis_ujian()
     {

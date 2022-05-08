@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\User;
 use App\Models\WaliKelas;
 use Illuminate\Http\Request;
@@ -17,10 +18,9 @@ class DataGuruController extends Controller
     public function index()
     {
         $guru = User::where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 2)->get();
-
-
-        return view('admin.data-guru', [
+        return view('admin.data', [
             'title' => 'Data Guru',
+            'link' => 'dataguru',
             'guru' => $guru,
         ]);
     }
@@ -32,11 +32,13 @@ class DataGuruController extends Controller
      */
     public function create()
     {
-        $walas = WaliKelas::all();
+        $walas = WaliKelas::where('id_sekolah', auth()->user()->sekolah->id_sekolah)->get();
+        $walas = collect($walas)->sortBy('walas')->values()->all();
 
         return view('admin.data-create', [
-            'title' => 'Tambah Data',
-            'walas' => $walas
+            'title' => 'Tambah Data Guru',
+            'walas' => $walas,
+            'link' => 'dataguru'
         ]);
     }
 
@@ -56,11 +58,11 @@ class DataGuruController extends Controller
             'alamat' => 'required',
             'sekolah_id' => 'required',
             'role_id' => 'required',
-            'walikelas_id' => 'required|unique:App\Models\User'
+            'walikelas_id' => 'required|unique:users'
         ]);
         $validate['password'] = Hash::make($validate['password']);
         User::create($validate);
-        return redirect('/dataguru')->with('success', 'New post has been added!');
+        return redirect('/dataguru')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -82,7 +84,17 @@ class DataGuruController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 2)->get();
+
+        if (count($user) == 0) {
+            return redirect('/dataguru')->with('fail', 'Terjadi Kesalahan, Data Tidak Ditemukan!');
+        };
+
+        return view('admin.data-create', [
+            'title' => 'title',
+            'walas' => $user,
+            'link' => 'dataguru'
+        ]);
     }
 
     /**
@@ -105,6 +117,15 @@ class DataGuruController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        return redirect('/dataguru')->with('success', 'Data Berhasil Di Hapus');
+    }
+
+    public function messages()
+    {
+        return [
+            'walikelas_id.unique:App\Models\User' => 'Kelas Tidak Tersedia'
+        ];
     }
 }
