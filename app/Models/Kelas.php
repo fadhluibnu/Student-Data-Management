@@ -12,13 +12,13 @@ class Kelas extends Model
         'id'
     ];
 
-    protected $with = [
-        'users'
-    ];
+    // protected $with = [
+    //     'users'
+    // ];
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'kelas_id');
     }
     public function data_nilai_siswas()
     {

@@ -19,24 +19,32 @@
         @can('admin')
             <h2 class="side-nav-title mt-4">Admin</h2>
             <ul class="navbar-nav mt-3">
-                <li class="nav-item">
+                <li class="nav-item mb-1">
                     <a href="/dataguru"
                         class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('dataguru*') ? 'aktif' : '' }}">
                         <i class="bi bi-gear me-4" id="icon-navside"></i>
                         <span>Data Guru</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link my-nav-link d-flex p-3 py-2">
+                <li class="nav-item mb-1">
+                    <a href="/datasiswa"
+                        class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('datasiswa*') ? 'aktif' : '' }}">
                         <i class="bi bi-gear me-4" id="icon-navside"></i>
                         <span>Data Siswa</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-1">
                     <a href="/datakelas"
                         class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('datakelas*') ? 'aktif' : '' }}">
                         <i class="bi bi-gear me-4" id="icon-navside"></i>
                         <span>Data Kelas</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="/tahunjenis"
+                        class="nav-link my-nav-link d-flex p-3 py-2 {{ Request::is('tahunjenis*') ? 'aktif' : '' }}">
+                        <i class="bi bi-gear me-4" id="icon-navside"></i>
+                        <span>Tahun & Jenis</span>
                     </a>
                 </li>
             </ul>

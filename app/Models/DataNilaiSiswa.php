@@ -14,7 +14,7 @@ class DataNilaiSiswa extends Model
         'id'
     ];
 
-    protected $with = ['jenis_ujian', 'tahun_ujian', 'user'];
+    // protected $with = ['jenis_ujian', 'tahun_ujian', 'user'];
 
     public function scopeFilter($query, array $filters)
     {

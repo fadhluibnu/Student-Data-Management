@@ -12,22 +12,25 @@
         <span class="my-table-header">Jmlh Siswa</span>
     </div>
 </div>
-@foreach ($kelas as $item)
+@foreach ($data as $item)
     <div class="row table-value p-2">
         <div class="col-2 col-lg-1">
             <div class="my-table-main">{{ $loop->iteration }}</div>
         </div>
         <div class="col-3 col-lg-3">
-            <div class="my-table-main">{{ $item->walas }}</div>
+            <div class="my-table-main">{{ $item['nama'] }}</div>
         </div>
         <div class="col-4 col-lg-5">
             <div class="my-table-main">
-                @foreach ($walas as $u)
-                    @if ($u->role_id == 2 && $u->walikelas_id == $item->id)
-                        {{ $u->name }}
-                    @endif
-                @endforeach
+                {!! $item['walas'] !!}
             </div>
+        </div>
+        <div class="col-3 col-lg-3">
+            <span class="my-table-main">
+                @php
+                    echo count($item['jmlh']);
+                @endphp
+            </span>
         </div>
     </div>
 @endforeach

@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\DataGuruController;
 use App\Http\Controllers\DataKelasController;
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\SettingAkunController;
+use App\Http\Controllers\TahunJenisUjian;
+use App\Http\Controllers\TahunJenisUjianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +27,9 @@ Route::resource('/setting', SettingAkunController::class)->middleware('auth');
 
 // admin
 Route::resource('/dataguru', DataGuruController::class)->middleware('admin');
+Route::resource('/datasiswa', DataSiswaController::class)->middleware('admin');
 Route::resource('/datakelas', DataKelasController::class)->middleware('admin');
+Route::resource('/tahunjenis', TahunJenisUjianController::class)->middleware('admin');
 
 // guest
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');

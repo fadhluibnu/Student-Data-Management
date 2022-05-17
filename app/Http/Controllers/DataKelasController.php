@@ -18,16 +18,38 @@ class DataKelasController extends Controller
     public function index()
     {
         $getKelas = WaliKelas::where('id_sekolah', auth()->user()->sekolah->id_sekolah)->get();
-        $getWalas = User::where('sekolah_id', auth()->user()->sekolah_id)->get();
+        $user = User::where('sekolah_id', auth()->user()->sekolah_id)->get();
 
-        $walas  = collect($getWalas)->whereNotIn('role_id', 1)->values()->all();
+        $user  = collect($user)->whereNotIn('role_id', 1)->values()->all();
         $kelas =  collect($getKelas)->sortBy('walas')->values()->all();
+
+        $data = [];
+        $i = 0;
+        foreach ($kelas as $k) {
+            $data[] = [
+                'nama' => $k->walas,
+                'jmlh' => [],
+                'walas' => '<span class="text-danger">Kosong</span>'
+            ];
+            foreach ($user as $w) {
+                if ($w->role_id == 2) {
+                    if ($w->walikelas_id == $k->id) {
+                        $data[$i]['walas'] = $w->name;
+                    }
+                }
+            }
+            foreach ($user as $j) {
+                if ($j->role_id == 3 && $j->kelas_id == $k->id) {
+                    $data[$i]['jmlh'][] = $j->name;
+                }
+            }
+            $i++;
+        }
 
         return view('admin.data', [
             'title' => "Data Kelas",
             'link' => 'datakelas',
-            'kelas' => $kelas,
-            'walas' => $walas
+            'data' => $data
         ]);
     }
 

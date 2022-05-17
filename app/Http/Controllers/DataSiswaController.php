@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\User;
-use App\Models\WaliKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class DataGuruController extends Controller
+class DataSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,11 @@ class DataGuruController extends Controller
      */
     public function index()
     {
-        $guru = User::where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 2)->get();
+        $siswa = User::where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 3)->get();
         return view('admin.data', [
-            'title' => 'Data Guru',
-            'link' => 'dataguru',
-            'guru' => $guru,
+            'title' => 'Tambah Data Siswa',
+            'link' => 'datasiswa',
+            'siswa' => $siswa
         ]);
     }
 
@@ -32,13 +31,13 @@ class DataGuruController extends Controller
      */
     public function create()
     {
-        $walas = WaliKelas::where('id_sekolah', auth()->user()->sekolah->id_sekolah)->get();
-        $walas = collect($walas)->sortBy('walas')->values()->all();
+        $kelas = Kelas::where('id_sekolah', auth()->user()->sekolah->id_sekolah)->get();
+        $kelas = collect($kelas)->sortBy('kelas')->values()->all();
 
         return view('admin.data-create', [
-            'title' => 'Tambah Data Guru',
-            'walas' => $walas,
-            'link' => 'dataguru'
+            'title' => 'Tambah Data Siswa',
+            'kelas' => $kelas,
+            'link' => 'datasiswa'
         ]);
     }
 
@@ -58,11 +57,14 @@ class DataGuruController extends Controller
             'alamat' => 'required',
             'sekolah_id' => 'required',
             'role_id' => 'required',
-            'walikelas_id' => 'required|unique:users'
+            'kelas_id' => 'required'
         ]);
+
         $validate['password'] = Hash::make($validate['password']);
+
         User::create($validate);
-        return redirect('/dataguru')->with('success', 'Data Berhasil Ditambahkan!');
+
+        return redirect('/datasiswa')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -84,17 +86,19 @@ class DataGuruController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 2)->get();
+        $siswa = User::where('id', $id)->where('sekolah_id', auth()->user()->sekolah_id)->where('role_id', 3)->get();
+        $kelas = Kelas::where('id_sekolah', auth()->user()->sekolah->id_sekolah)->get();
 
-        if (count($user) == 0) {
-            return redirect('/dataguru')->with('fail', 'Terjadi Kesalahan, Data Tidak Ditemukan!');
+        if (count($siswa) == 0) {
+            return redirect('/datasiswa')->with('fail', 'Terjadi Kesalahan, Data Tidak Ditemukan!');
         };
 
         return view('admin.data-create', [
-            'title' => 'Edit Data Guru',
-            'walas' => $user,
-            'link' => 'dataguru/' . $id,
-            'mode' => 'dataguru'
+            'title' => 'Edit Data Siswa',
+            'siswa' => $siswa,
+            'link' => 'datasiswa/' . $id,
+            'kelas' => collect($kelas)->sortBy('kelas')->values()->all(),
+            'mode' => 'datasiswa'
         ]);
     }
 
@@ -111,16 +115,16 @@ class DataGuruController extends Controller
             'nis' => 'required',
             'name' => 'required',
             'email' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'kelas_id' => 'required'
         ]);
-
         if ($request->password != null) {
             $validate += ['password' => 'required|min:8'];
+            $validate['password'] = Hash::make($validate['password']);
         };
 
         User::where('id', $id)->update($validate);
-
-        return redirect('/dataguru')->with('success', 'Data Berhasil Diubah!');
+        return redirect('/datasiswa')->with('success', 'Data Berhasil Diubah!');
     }
 
     /**
@@ -133,13 +137,6 @@ class DataGuruController extends Controller
     {
         User::destroy($id);
 
-        return redirect('/dataguru')->with('success', 'Data Berhasil Di Hapus');
-    }
-
-    public function messages()
-    {
-        return [
-            'walikelas_id.unique:App\Models\User' => 'Kelas Tidak Tersedia'
-        ];
+        return redirect('/datasiswa')->with('success', 'Data Berhasil Di Hapus');
     }
 }
