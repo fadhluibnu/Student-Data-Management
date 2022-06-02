@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('authcontain')
-    <a href="/login" class="btn">Back</a>
+    <a href="/login" class="nav-link ps-0"><i class="bi bi-chevron-left"></i> Back</a>
     <h1 class="form-login-title">Registrasi</h1>
     <form action="/registrasi?@if (request('u') == 'sekolah') u=sekolah @endif" class="mt-4" method="POST">
         @csrf

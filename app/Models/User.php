@@ -66,4 +66,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Sekolah::class);
     }
+    public function data_nilai_siswas()
+    {
+        return $this->hasMany(DataNilaiSiswa::class, 'user_id');
+    }
 }

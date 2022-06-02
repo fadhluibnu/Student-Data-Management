@@ -45,7 +45,7 @@
         data-bs-toggle="dropdown" aria-expanded="false">
         Pilih kelas
     </button>
-    <input type="text" id="kelasSelect" name="kelas_id">
+    <input type="hidden" id="kelasSelect" name="kelas_id">
     <ul class="dropdown-menu" aria-labelledby="walikelas" onclick="showButton()">
         @foreach ($kelas as $item)
             <li class="dropdown-input kelas_list" data-slug-kelas="{{ $item->id }}">

@@ -56,10 +56,11 @@ class TahunJenisUjianController extends Controller
             $validate = $request->validate([
                 'tambahJenis' => 'required'
             ]);
+            $space = str_replace(' ', '', $validate['tambahJenis']);
             JenisUjian::create([
                 'id_sekolah' => auth()->user()->sekolah->id_sekolah,
                 'ujian' => $validate['tambahJenis'],
-                'slug' => strtolower($validate['tambahJenis'])
+                'slug' => strtolower($space)
             ]);
         }
         return redirect('/tahunjenis')->with('success', 'Data Berhasil Ditambahkan!');

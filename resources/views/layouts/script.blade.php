@@ -17,3 +17,6 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
 @if (Request::is('tahunjenis*'))
     <script src="/js/tahunjenis.js"></script>
 @endif
+@if (Request::is('nilaisiswa'))
+    <script src="/js/nilaisiswa.js"></script>
+@endif

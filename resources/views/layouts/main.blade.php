@@ -19,12 +19,12 @@
 
     @if (Request::is('login') || Request::is('registrasi'))
         <div class="container m-auto">
-            <div class="row justify-content-center m-auto rounded-3 bg-white overflow-hidden">
+            <div class="row justify-content-center m-auto  overflow-hidden">
                 {{-- <div class="col-md-6 my-bg-primary p-3">
                     <h1 class="form-title">Forum web Application</h1>
                     <div class="line"></div>
                 </div> --}}
-                <div class="col-md-12 p-3">
+                <div class="{{ Request::is('login') ? 'col-md-6' : 'col-md-12' }} p-4 bg-white rounded-3">
                     @yield('authcontain')
                 </div>
             </div>

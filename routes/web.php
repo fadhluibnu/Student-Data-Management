@@ -4,6 +4,7 @@ use App\Http\Controllers\DataGuruController;
 use App\Http\Controllers\DataKelasController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NilaiSiswaController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\SettingAkunController;
 use App\Http\Controllers\TahunJenisUjian;
@@ -30,6 +31,9 @@ Route::resource('/dataguru', DataGuruController::class)->middleware('admin');
 Route::resource('/datasiswa', DataSiswaController::class)->middleware('admin');
 Route::resource('/datakelas', DataKelasController::class)->middleware('admin');
 Route::resource('/tahunjenis', TahunJenisUjianController::class)->middleware('admin');
+
+//guru
+Route::resource('/nilaisiswa', NilaiSiswaController::class)->middleware('guru');
 
 // guest
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');

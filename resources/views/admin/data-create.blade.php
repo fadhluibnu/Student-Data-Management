@@ -5,8 +5,8 @@
         <div id="js-load-overview"></div>
         <div class="container-fluid mt-4">
             <form class="bg-white p-4 rounded-3" action="/{{ $link }}" method="POST">
-                <a href="/{{ isset($mode) ? $mode : $link }}" class="nav-link ps-0"><i class="bi bi-chevron-left"></i>
-                    Batal</a>
+                <a href="/{{ isset($mode) ? $mode : $link }}" class="nav-link ps-0"><i
+                        class="bi bi-chevron-left"></i>Batal</a>
                 @csrf
                 @if (Request::is('dataguru/create'))
                     @include('admin.partials.guru-create')
@@ -24,6 +24,13 @@
                 @endif
                 @if (Request::is('datakelas*'))
                     @include('admin.partials.kelas-create')
+                @endif
+                @if (Request::is('nilaisiswa/*/edit'))
+                    @method('put')
+                    @include('admin.partials.nilaisiswa-edit')
+                @endif
+                @if (Request::is('nilaisiswa/create'))
+                    @include('admin.partials.nilaisiswa-create')
                 @endif
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </form>

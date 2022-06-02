@@ -25,8 +25,8 @@
             <label for="password">Password</label>
         </div>
         <button class="btn my-btn-form p-3 mt-3" type="submit">Masuk</button>
-        <div class="dropdown">
-            <button class="btn my-btn-form  p-3 mt-3 seccond dropdown-toggle" type="button" id="dropdownMenuButton1"
+        {{-- <div class="dropdown"> --}}
+        {{-- <button class="btn my-btn-form  p-3 mt-3 seccond dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Daftar
             </button>
@@ -37,7 +37,8 @@
                 <li><a class="dropdown-item" href="/registrasi?u=sekolah">Sekolah</a></li>
                 <li><a class="dropdown-item" href="/registrasi?u=guru">Guru</a></li>
                 <li><a class="dropdown-item" href="/registrasi?u=siswa">Siswa</a></li>
-            </ul>
-        </div>
+            </ul> --}}
+        <a href="/registrasi?u=sekolah" class="btn my-btn-form p-3 mt-3 seccond">Daftar</a>
+        {{-- </div> --}}
     </form>
 @endsection

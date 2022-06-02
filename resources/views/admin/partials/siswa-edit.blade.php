@@ -33,7 +33,7 @@
     <div class="mb-3">
         <label for="password_data_guru" class="form-label">Password</label>
         <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
-            id="password_data_guru" placeholder="Password" required>
+            id="password_data_guru" placeholder="Password">
         @error('password')
             <div class="  invalid-feedback">
                 {{ $message }}
@@ -46,7 +46,7 @@
             id="btnClass" data-bs-toggle="dropdown" aria-expanded="false">
             {{ $item->kelas->kelas }}
         </button>
-        <input type="text" id="kelasSelect" name="kelas_id" value="{{ $item->kelas->id }}">
+        <input type="hidden" id="kelasSelect" name="kelas_id" value="{{ $item->kelas->id }}">
         <ul class="dropdown-menu" aria-labelledby="walikelas" onclick="showButton()">
             @foreach ($kelas as $kelas)
                 <li class="dropdown-input kelas_list" data-slug-kelas="{{ $kelas->id }}">
